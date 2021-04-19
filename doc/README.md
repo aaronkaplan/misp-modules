@@ -22,6 +22,26 @@ On demand query API for OSINT.digitalside.it project.
 
 -----
 
+#### [apivoid](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/apivoid.py)
+
+<img src=logos/apivoid.png height=60>
+
+Module to query APIVoid with some domain attributes.
+- **features**:
+>This module takes a domain name and queries API Void to get the related DNS records and the SSL certificates. It returns then those pieces of data as MISP objects that can be added to the event.
+>
+>To make it work, a valid API key and enough credits to proceed 2 queries (0.06 + 0.07 credits) are required.
+- **input**:
+>A domain attribute.
+- **output**:
+>DNS records and SSL certificates related to the domain.
+- **references**:
+>https://www.apivoid.com/
+- **requirements**:
+>A valid APIVoid API key with enough credits to proceed 2 queries
+
+-----
+
 #### [assemblyline_query](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/assemblyline_query.py)
 
 <img src=logos/assemblyline.png height=60>
@@ -132,19 +152,35 @@ An expansion hover module to get a blockchain balance from a BTC address in MISP
 
 -----
 
+#### [censys_enrich](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/censys_enrich.py)
+
+An expansion module to enrich attributes in MISP by quering the censys.io API
+- **features**:
+>This module takes an IP, hostname or a certificate fingerprint and attempts to enrich it by querying the Censys API.
+- **input**:
+>IP, domain or certificate fingerprint (md5, sha1 or sha256)
+- **output**:
+>MISP objects retrieved from censys, including open ports, ASN, Location of the IP, x509 details
+- **references**:
+>https://www.censys.io
+- **requirements**:
+>API credentials to censys.io
+
+-----
+
 #### [circl_passivedns](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/circl_passivedns.py)
 
 <img src=logos/passivedns.png height=60>
 
 Module to access CIRCL Passive DNS.
 - **features**:
->This module takes a hostname, domain or ip-address (ip-src or ip-dst) attribute as input, and queries the CIRCL Passive DNS REST API to get and display information about this input.
+>This module takes a hostname, domain or ip-address (ip-src or ip-dst) attribute as input, and queries the CIRCL Passive DNS REST API to get the asssociated passive dns entries and return them as MISP objects.
 >
 >To make it work a username and a password are thus required to authenticate to the CIRCL Passive DNS API.
 - **input**:
 >Hostname, domain, or ip-address attribute.
 - **ouput**:
->Text describing passive DNS information related to the input attribute.
+>Passive DNS objects related to the input attribute.
 - **references**:
 >https://www.circl.lu/services/passive-dns/, https://datatracker.ietf.org/doc/draft-dulaunoy-dnsop-passive-dns-cof/
 - **requirements**:
@@ -158,13 +194,13 @@ Module to access CIRCL Passive DNS.
 
 Modules to access CIRCL Passive SSL.
 - **features**:
->This module takes an ip-address (ip-src or ip-dst) attribute as input, and queries the CIRCL Passive SSL REST API to get and display information about this input.
+>This module takes an ip-address (ip-src or ip-dst) attribute as input, and queries the CIRCL Passive SSL REST API to gather the related certificates and return the corresponding MISP objects.
 >
->To make it work a username and a password are thus required to authenticate to the CIRCL Passive SSL API.
+>To make it work a username and a password are required to authenticate to the CIRCL Passive SSL API.
 - **input**:
->Ip-address attribute.
+>IP address attribute.
 - **output**:
->Text describing passive SSL information related to the input attribute.
+>x509 certificate objects seen by the IP address(es).
 - **references**:
 >https://www.circl.lu/services/passive-ssl/
 - **requirements**:
@@ -272,6 +308,24 @@ An expansion hover module to expand information about CVE id.
 >Text giving information about the CVE related to the Vulnerability.
 - **references**:
 >https://cve.circl.lu/, https://cve.mitre.org/
+
+-----
+
+#### [cytomic_orion](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/cytomic_orion.py)
+
+<img src=logos/cytomic_orion.png height=60>
+
+An expansion module to enrich attributes in MISP by quering the Cytomic Orion API
+- **features**:
+>This module takes an MD5 hash and searches for occurrences of this hash in the Cytomic Orion database. Returns observed files and machines.
+- **input**:
+>MD5, hash of the sample / malware to search for.
+- **output**:
+>MISP objects with sightings of the hash in Cytomic Orion. Includes files and machines.
+- **references**:
+>https://www.vanimpe.eu/2020/03/10/integrating-misp-and-cytomic-orion/, https://www.cytomicmodel.com/solutions/
+- **requirements**:
+>Access (license) to Cytomic Orion
 
 -----
 
@@ -512,11 +566,11 @@ Module to access intelmqs eventdb.
 
 Module to query an IP ASN history service (https://github.com/D4-project/IPASN-History).
 - **features**:
->This module takes an IP address attribute as input and queries the CIRCL IPASN service to get additional information about the input.
+>This module takes an IP address attribute as input and queries the CIRCL IPASN service. The result of the query is the latest asn related to the IP address, that is returned as a MISP object.
 - **input**:
 >An IP address MISP attribute.
 - **output**:
->Text describing additional information about the input after a query on the IPASN-history database.
+>Asn object(s) objects related to the IP address used as input.
 - **references**:
 >https://github.com/D4-project/IPASN-History
 - **requirements**:
@@ -586,6 +640,42 @@ A module to submit files or URLs to Joe Sandbox for an advanced analysis, and re
 
 -----
 
+#### [lastline_query](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/lastline_query.py)
+
+<img src=logos/lastline.png height=60>
+
+Query Lastline with an analysis link and parse the report into MISP attributes and objects.
+The analysis link can also be retrieved from the output of the [lastline_submit](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/lastline_submit.py) expansion module.
+- **features**:
+>The module requires a Lastline Portal `username` and `password`.
+>The module uses the new format and it is able to return MISP attributes and objects.
+>The module returns the same results as the [lastline_import](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/import_mod/lastline_import.py) import module.
+- **input**:
+>Link to a Lastline analysis.
+- **output**:
+>MISP attributes and objects parsed from the analysis report.
+- **references**:
+>https://www.lastline.com
+
+-----
+
+#### [lastline_submit](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/lastline_submit.py)
+
+<img src=logos/lastline.png height=60>
+
+Module to submit a file or URL to Lastline.
+- **features**:
+>The module requires a Lastline Analysis `api_token` and `key`.
+>When the analysis is completed, it is possible to import the generated report by feeding the analysis link to the [lastline_query](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/lastline_query.py) module.
+- **input**:
+>File or URL to submit to Lastline.
+- **output**:
+>Link to the report generated by Lastline.
+- **references**:
+>https://www.lastline.com
+
+-----
+
 #### [macaddress_io](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/macaddress_io.py)
 
 <img src=logos/macaddress_io.png height=60>
@@ -622,6 +712,22 @@ Module to access Macvendors API.
 >Additional information about the MAC address.
 - **references**:
 >https://macvendors.com/, https://macvendors.com/api
+
+-----
+
+#### [malwarebazaar](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/malwarebazaar.py)
+
+Query the MALWAREbazaar API to get additional information about the input hash attribute.
+- **features**:
+>The module takes a hash attribute as input and queries MALWAREbazaar's API to fetch additional data about it. The result, if the payload is known on the databases, is at least one file object describing the file the input hash is related to.
+>
+>The module is using the new format of modules able to return object since the result is one or multiple MISP object(s).
+- **input**:
+>A hash attribute (md5, sha1 or sha256).
+- **output**:
+>File object(s) related to the input attribute found on MALWAREbazaar databases.
+- **references**:
+>https://bazaar.abuse.ch/
 
 -----
 
@@ -1078,6 +1184,35 @@ Module to get information from ThreatMiner.
 
 -----
 
+#### [trustar_enrich](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/trustar_enrich.py)
+
+<img src=logos/trustar.png height=60>
+
+Module to get enrich indicators with TruSTAR.
+- **features**:
+>This module enriches MISP attributes with scoring and metadata from TruSTAR.
+>
+>The TruSTAR indicator summary is appended to the attributes along with links to any associated reports.
+- **input**:
+>Any of the following MISP attributes:
+>- btc
+>- domain
+>- email-src
+>- filename
+>- hostname
+>- ip-src
+>- ip-dst
+>- md5
+>- sha1
+>- sha256
+>- url
+- **output**:
+>MISP attributes enriched with indicator summary data from the TruSTAR API. Data includes a severity level score and additional source and scoring info.
+- **references**:
+>https://docs.trustar.co/api/v13/indicators/get_indicator_summaries.html
+
+-----
+
 #### [urlhaus](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/urlhaus.py)
 
 <img src=logos/urlhaus.png height=60>
@@ -1531,6 +1666,26 @@ Module to export a structured CSV file for uploading to ThreatConnect.
 
 -----
 
+#### [vt_graph](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/export_mod/vt_graph.py)
+
+<img src=logos/virustotal.png height=60>
+
+This module is used to create a VirusTotal Graph from a MISP event.
+- **features**:
+>The module takes the MISP event as input and queries the VirusTotal Graph API to create a new graph out of the event.
+>
+>Once the graph is ready, we get the url of it, which is returned so we can view it on VirusTotal.
+- **input**:
+>A MISP event.
+- **output**:
+>Link of the VirusTotal Graph created for the event.
+- **references**:
+>https://www.virustotal.com/gui/graph-overview
+- **requirements**:
+>vt_graph_api, the python library to query the VirusTotal graph API
+
+-----
+
 ## Import Modules
 
 #### [csvimport](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/import_mod/csvimport.py)
@@ -1617,6 +1772,24 @@ A module to import data from a Joe Sandbox analysis json report.
 >MISP attributes & objects parsed from the analysis report.
 - **references**:
 >https://www.joesecurity.org, https://www.joesandbox.com/
+
+-----
+
+#### [lastline_import](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/import_mod/lastline_import.py)
+
+<img src=logos/lastline.png height=60>
+
+Module to import and parse reports from Lastline analysis links.
+- **features**:
+>The module requires a Lastline Portal `username` and `password`.
+>The module uses the new format and it is able to return MISP attributes and objects.
+>The module returns the same results as the [lastline_query](https://github.com/MISP/misp-modules/tree/master/misp_modules/modules/expansion/lastline_query.py) expansion module.
+- **input**:
+>Link to a Lastline analysis.
+- **output**:
+>MISP attributes and objects parsed from the analysis report.
+- **references**:
+>https://www.lastline.com
 
 -----
 

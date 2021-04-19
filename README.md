@@ -18,6 +18,7 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 ### Expansion modules
 
 * [apiosintDS](misp_modules/modules/expansion/apiosintds.py) - a hover and expansion module to query the OSINT.digitalside.it API.
+* [API Void](misp_modules/modules/expansion/apivoid.py) - an expansion and hover module to query API Void with a domain attribute.
 * [AssemblyLine submit](misp_modules/modules/expansion/assemblyline_submit.py) - an expansion module to submit samples and urls to AssemblyLine.
 * [AssemblyLine query](misp_modules/modules/expansion/assemblyline_query.py) - an expansion module to query AssemblyLine and parse the full submission report.
 * [Backscatter.io](misp_modules/modules/expansion/backscatter_io.py) - a hover and expansion module to expand an IP address with mass-scanning observations.
@@ -25,13 +26,15 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [RansomcoinDB check](misp_modules/modules/expansion/ransomcoindb.py) - An expansion hover module to query the [ransomcoinDB](https://ransomcoindb.concinnity-risks.com): it contains mapping between BTC addresses and malware hashes. Enrich MISP by querying for BTC -> hash or hash -> BTC addresses.
 * [BTC scam check](misp_modules/modules/expansion/btc_scam_check.py) - An expansion hover module to instantly check if a BTC address has been abused.
 * [BTC transactions](misp_modules/modules/expansion/btc_steroids.py) - An expansion hover module to get a blockchain balance and the transactions from a BTC address in MISP.
+* [Censys-enrich](misp_modules/modules/expansion/censys_enrich.py) - An expansion and module to retrieve information from censys.io about a particular IP or certificate.
 * [CIRCL Passive DNS](misp_modules/modules/expansion/circl_passivedns.py) - a hover and expansion module to expand hostname and IP addresses with passive DNS information.
-* [CIRCL Passive SSL](misp_modules/modules/expansion/circl_passivessl.py) - a hover and expansion module to expand IP addresses with the X.509 certificate seen.
+* [CIRCL Passive SSL](misp_modules/modules/expansion/circl_passivessl.py) - a hover and expansion module to expand IP addresses with the X.509 certificate(s) seen.
 * [countrycode](misp_modules/modules/expansion/countrycode.py) - a hover module to tell you what country a URL belongs to.
 * [CrowdStrike Falcon](misp_modules/modules/expansion/crowdstrike_falcon.py) - an expansion module to expand using CrowdStrike Falcon Intel Indicator API.
 * [CVE](misp_modules/modules/expansion/cve.py) - a hover module to give more information about a vulnerability (CVE).
 * [CVE advanced](misp_modules/modules/expansion/cve_advanced.py) - An expansion module to query the CIRCL CVE search API for more information about a vulnerability (CVE).
 * [Cuckoo submit](misp_modules/modules/expansion/cuckoo_submit.py) - A hover module to submit malware sample, url, attachment, domain to Cuckoo Sandbox.
+* [Cytomic Orion](misp_modules/modules/expansion/cytomic_orion.py) - An expansion module to enrich attributes in MISP and share indicators of compromise with Cytomic Orion.
 * [DBL Spamhaus](misp_modules/modules/expansion/dbl_spamhaus.py) - a hover module to check Spamhaus DBL for a domain name.
 * [DNS](misp_modules/modules/expansion/dns.py) - a simple module to resolve MISP attributes like hostname and domain to expand IP addresses attributes.
 * [docx-enrich](misp_modules/modules/expansion/docx_enrich.py) - an enrichment module to get text out of Word document into MISP (using free-text parser).
@@ -40,6 +43,8 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [EUPI](misp_modules/modules/expansion/eupi.py) - a hover and expansion module to get information about an URL from the [Phishing Initiative project](https://phishing-initiative.eu/?lang=en).
 * [Farsight DNSDB Passive DNS](misp_modules/modules/expansion/farsight_passivedns.py) - a hover and expansion module to expand hostname and IP addresses with passive DNS information.
 * [GeoIP](misp_modules/modules/expansion/geoip_country.py) - a hover and expansion module to get GeoIP information from geolite/maxmind.
+* [GeoIP_City](misp_modules/modules/expansion/geoip_city.py) - a hover and expansion module to get GeoIP City information from geolite/maxmind.
+* [GeoIP_ASN](misp_modules/modules/expansion/geoip_asn.py) - a hover and expansion module to get GeoIP ASN information from geolite/maxmind.
 * [Greynoise](misp_modules/modules/expansion/greynoise.py) - a hover to get information from greynoise.
 * [hashdd](misp_modules/modules/expansion/hashdd.py) - a hover module to check file hashes against [hashdd.com](http://www.hashdd.com) including NSLR dataset.
 * [hibp](misp_modules/modules/expansion/hibp.py) - a hover module to lookup against Have I Been Pwned?
@@ -48,8 +53,11 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [iprep](misp_modules/modules/expansion/iprep.py) - an expansion module to get IP reputation from packetmail.net.
 * [Joe Sandbox submit](misp_modules/modules/expansion/joesandbox_submit.py) - Submit files and URLs to Joe Sandbox.
 * [Joe Sandbox query](misp_modules/modules/expansion/joesandbox_query.py) - Query Joe Sandbox with the link of an analysis and get the parsed data.
+* [Lastline submit](misp_modules/modules/expansion/lastline_submit.py) - Submit files and URLs to Lastline.
+* [Lastline query](misp_modules/modules/expansion/lastline_query.py) - Query Lastline with the link to an analysis and parse the report.
 * [macaddress.io](misp_modules/modules/expansion/macaddress_io.py) - a hover module to retrieve vendor details and other information regarding a given MAC address or an OUI from [MAC address Vendor Lookup](https://macaddress.io). See [integration tutorial here](https://macaddress.io/integrations/MISP-module).
 * [macvendors](misp_modules/modules/expansion/macvendors.py) - a hover module to retrieve mac vendor information.
+* [MALWAREbazaar](misp_modules/modules/expansion/malwarebazaar.py) - an expansion module to query MALWAREbazaar with some payload.
 * [ocr-enrich](misp_modules/modules/expansion/ocr_enrich.py) - an enrichment module to get OCRized data from images into MISP.
 * [ods-enrich](misp_modules/modules/expansion/ods_enrich.py) - an enrichment module to get text out of OpenOffice spreadsheet document into MISP (using free-text parser).
 * [odt-enrich](misp_modules/modules/expansion/odt_enrich.py) - an enrichment module to get text out of OpenOffice document into MISP (using free-text parser).
@@ -61,11 +69,13 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [pptx-enrich](misp_modules/modules/expansion/pptx_enrich.py) - an enrichment module to get text out of PowerPoint document into MISP (using free-text parser).
 * [qrcode](misp_modules/modules/expansion/qrcode.py) - a module decode QR code, barcode and similar codes from an image and enrich with the decoded values.
 * [rbl](misp_modules/modules/expansion/rbl.py) - a module to get RBL (Real-Time Blackhost List) values from an attribute.
+* [recordedfuture](misp_modules/modules/expansion/recordedfuture.py) - a hover and expansion module for enriching MISP attributes with threat intelligence from Recorded Future.
 * [reversedns](misp_modules/modules/expansion/reversedns.py) - Simple Reverse DNS expansion service to resolve reverse DNS from MISP attributes.
 * [securitytrails](misp_modules/modules/expansion/securitytrails.py) - an expansion module for [securitytrails](https://securitytrails.com/).
 * [shodan](misp_modules/modules/expansion/shodan.py) - a minimal [shodan](https://www.shodan.io/) expansion module.
 * [Sigma queries](misp_modules/modules/expansion/sigma_queries.py) - Experimental expansion module querying a sigma rule to convert it into all the available SIEM signatures.
 * [Sigma syntax validator](misp_modules/modules/expansion/sigma_syntax_validator.py) - Sigma syntax validator.
+* [SophosLabs Intelix](misp_modules/modules/expansion/sophoslabs_intelix.py) - SophosLabs Intelix is an API for Threat Intelligence and Analysis (free tier availible). [SophosLabs](https://aws.amazon.com/marketplace/pp/B07SLZPMCS)
 * [sourcecache](misp_modules/modules/expansion/sourcecache.py) - a module to cache a specific link from a MISP instance.
 * [STIX2 pattern syntax validator](misp_modules/modules/expansion/stix2_pattern_syntax_validator.py) - a module to check a STIX2 pattern syntax.
 * [ThreatCrowd](misp_modules/modules/expansion/threatcrowd.py) - an expansion module for [ThreatCrowd](https://www.threatcrowd.org/).
@@ -86,26 +96,28 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 
 ### Export modules
 
-* [CEF](misp_modules/modules/export_mod/cef_export.py) module to export Common Event Format (CEF).
-* [Cisco FireSight Manager ACL rule](misp_modules/modules/export_mod/cisco_firesight_manager_ACL_rule_export.py) module to export as rule for the Cisco FireSight manager ACL.
-* [GoAML export](misp_modules/modules/export_mod/goamlexport.py) module to export in [GoAML format](http://goaml.unodc.org/goaml/en/index.html).
-* [Lite Export](misp_modules/modules/export_mod/liteexport.py) module to export a lite event.
-* [PDF export](misp_modules/modules/export_mod/pdfexport.py) module to export an event in PDF.
-* [Mass EQL Export](misp_modules/modules/export_mod/mass_eql_export.py) module to export applicable attributes from an event to a mass EQL query. 
-* [Nexthink query format](misp_modules/modules/export_mod/nexthinkexport.py) module to export in Nexthink query format.
-* [osquery](misp_modules/modules/export_mod/osqueryexport.py) module to export in [osquery](https://osquery.io/) query format.
-* [ThreatConnect](misp_modules/modules/export_mod/threat_connect_export.py) module to export in ThreatConnect CSV format.
-* [ThreatStream](misp_modules/modules/export_mod/threatStream_misp_export.py) module to export in ThreatStream format.
+* [CEF](misp_modules/modules/export_mod/cef_export.py) - module to export Common Event Format (CEF).
+* [Cisco FireSight Manager ACL rule](misp_modules/modules/export_mod/cisco_firesight_manager_ACL_rule_export.py) - module to export as rule for the Cisco FireSight manager ACL.
+* [GoAML export](misp_modules/modules/export_mod/goamlexport.py) - module to export in [GoAML format](http://goaml.unodc.org/goaml/en/index.html).
+* [Lite Export](misp_modules/modules/export_mod/liteexport.py) - module to export a lite event.
+* [PDF export](misp_modules/modules/export_mod/pdfexport.py) - module to export an event in PDF.
+* [Mass EQL Export](misp_modules/modules/export_mod/mass_eql_export.py) - module to export applicable attributes from an event to a mass EQL query.
+* [Nexthink query format](misp_modules/modules/export_mod/nexthinkexport.py) - module to export in Nexthink query format.
+* [osquery](misp_modules/modules/export_mod/osqueryexport.py) - module to export in [osquery](https://osquery.io/) query format.
+* [ThreatConnect](misp_modules/modules/export_mod/threat_connect_export.py) - module to export in ThreatConnect CSV format.
+* [ThreatStream](misp_modules/modules/export_mod/threatStream_misp_export.py) - module to export in ThreatStream format.
+* [VirusTotal Graph](misp_modules/modules/export_mod/vt_graph.py) - Module to create a VirusTotal graph out of an event.
 
 ### Import modules
 
-* [CSV import](misp_modules/modules/import_mod/csvimport.py) Customizable CSV import module.
-* [Cuckoo JSON](misp_modules/modules/import_mod/cuckooimport.py) Cuckoo JSON import.
-* [Email Import](misp_modules/modules/import_mod/email_import.py) Email import module for MISP to import basic metadata.
-* [GoAML import](misp_modules/modules/import_mod/goamlimport.py) Module to import [GoAML](http://goaml.unodc.org/goaml/en/index.html) XML format.
-* [Joe Sandbox import](misp_modules/modules/import_mod/joe_import.py) Parse data from a Joe Sandbox json report.
-* [OCR](misp_modules/modules/import_mod/ocr.py) Optical Character Recognition (OCR) module for MISP to import attributes from images, scan or faxes.
-* [OpenIOC](misp_modules/modules/import_mod/openiocimport.py) OpenIOC import based on PyMISP library.
+* [CSV import](misp_modules/modules/import_mod/csvimport.py) - Customizable CSV import module.
+* [Cuckoo JSON](misp_modules/modules/import_mod/cuckooimport.py) - Cuckoo JSON import.
+* [Email Import](misp_modules/modules/import_mod/email_import.py) - Email import module for MISP to import basic metadata.
+* [GoAML import](misp_modules/modules/import_mod/goamlimport.py) - Module to import [GoAML](http://goaml.unodc.org/goaml/en/index.html) XML format.
+* [Joe Sandbox import](misp_modules/modules/import_mod/joe_import.py) - Parse data from a Joe Sandbox json report.
+* [Lastline import](misp_modules/modules/import_mod/lastline_import.py) - Module to import Lastline analysis reports.
+* [OCR](misp_modules/modules/import_mod/ocr.py) - Optical Character Recognition (OCR) module for MISP to import attributes from images, scan or faxes.
+* [OpenIOC](misp_modules/modules/import_mod/openiocimport.py) - OpenIOC import based on PyMISP library.
 * [ThreatAnalyzer](misp_modules/modules/import_mod/threatanalyzer_import.py) - An import module to process ThreatAnalyzer archive.zip/analysis.json sandbox exports.
 * [VMRay](misp_modules/modules/import_mod/vmray_import.py) - An import module to process VMRay export.
 
