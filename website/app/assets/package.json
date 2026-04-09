@@ -21,7 +21,7 @@
   "homepage": "https://github.com/MISP/misp-modules/#readme",
   "devDependencies": {
     "terser": "^5.39.0",
-    "vite": "^6.3.3",
+    "vite": "^6.4.1",
     "vite-plugin-static-copy": "^2.3.1"
   },
   "dependencies": {
