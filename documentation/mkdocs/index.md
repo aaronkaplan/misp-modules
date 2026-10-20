@@ -18,7 +18,7 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [Abuse IPDB](https://misp.github.io/misp-modules/expansion/#abuse-ipdb) - AbuseIPDB MISP expansion module
 * [ANYRUN Sandbox Submit](https://misp.github.io/misp-modules/expansion/#anyrun-sandbox-submit) - A module designed to submit URLs or files to the ANY.RUN Sandbox for analysis and return the unique analysis link and ID.
 * [OSINT DigitalSide](https://misp.github.io/misp-modules/expansion/#osint-digitalside) - On demand query API for OSINT.digitalside.it project.
-* [APIVoid](https://misp.github.io/misp-modules/expansion/#apivoid) - Module to query APIVoid with some domain attributes.
+* [APIVoid](https://misp.github.io/misp-modules/expansion/#apivoid) - Query APIVoid v2 for DNS records, SSL certificates and email verification.
 * [AssemblyLine Query](https://misp.github.io/misp-modules/expansion/#assemblyline-query) - A module tu query the AssemblyLine API with a submission ID to get the submission report and parse it.
 * [AssemblyLine Submit](https://misp.github.io/misp-modules/expansion/#assemblyline-submit) - A module to submit samples and URLs to AssemblyLine for advanced analysis, and return the link of the submission.
 * [APIFreaks](https://misp.github.io/misp-modules/expansion/#apifreaks) - An expansion module for https://apifreaks.com/ that will provide WHOIS, DOMAIN and DNS information.
@@ -60,10 +60,13 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [HYAS Insight Lookup](https://misp.github.io/misp-modules/expansion/#hyas-insight-lookup) - HYAS Insight integration to MISP provides direct, high volume access to HYAS Insight data. It enables investigators and analysts to understand and defend against cyber adversaries and their infrastructure.
 * [Intel471 Lookup](https://misp.github.io/misp-modules/expansion/#intel471-lookup) - Module to access Intel 471
 * [IP2Location.io Lookup](https://misp.github.io/misp-modules/expansion/#ip2location.io-lookup) - An expansion module to query IP2Location.io to gather more information on a given IP address.
+* [ipapi.is Lookup](https://misp.github.io/misp-modules/expansion/#ipapi.is-lookup) - An expansion and hover module to enrich an IP address with geolocation, ASN, company and abuse contact data, and VPN (with the provider), proxy, Tor and datacenter detection from ipapi.is.
 * [IPASN-History Lookup](https://misp.github.io/misp-modules/expansion/#ipasn-history-lookup) - Module to query an IP ASN history service (https://github.com/D4-project/IPASN-History).
+* [IPGeolocation.io Lookup](https://misp.github.io/misp-modules/expansion/#ipgeolocation.io-lookup) - An expansion and hover module to enrich an IP address with geolocation, ASN, company, threat intelligence (threat score, VPN, proxy, Tor, bot and spam signals) and abuse contact information from IPGeolocation.io, either through the API or from local IPGeolocation.io MMDB databases.
 * [IPInfo.io Lookup](https://misp.github.io/misp-modules/expansion/#ipinfo.io-lookup) - An expansion module to query ipinfo.io to gather more information on a given IP address.
 * [IPQualityScore Lookup](https://misp.github.io/misp-modules/expansion/#ipqualityscore-lookup) - IPQualityScore MISP Expansion Module for IP reputation, Email Validation, Phone Number Validation, Malicious Domain and Malicious URL Scanner.
 * [IPRep Lookup](https://misp.github.io/misp-modules/expansion/#iprep-lookup) - Module to query IPRep data for IP addresses.
+* [isMalicious Lookup](https://misp.github.io/misp-modules/expansion/#ismalicious-lookup) - Query isMalicious for IP, domain, hostname, and URL reputation.
 * [Ninja Template Rendering](https://misp.github.io/misp-modules/expansion/#ninja-template-rendering) - Render the template with the data passed
 * [Joe Sandbox Import](https://misp.github.io/misp-modules/expansion/#joe-sandbox-import) - Query Joe Sandbox API with a submission url to get the json report and extract its data that is parsed and converted into MISP attributes and objects.
 * [Joe Sandbox Submit](https://misp.github.io/misp-modules/expansion/#joe-sandbox-submit) - A module to submit files or URLs to Joe Sandbox for an advanced analysis, and return the link of the submission.
@@ -82,6 +85,7 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [Onion Lookup](https://misp.github.io/misp-modules/expansion/#onion-lookup) - MISP module using the MISP standard. Uses the onion-lookup service to get information about an onion.
 * [Onyphe Lookup](https://misp.github.io/misp-modules/expansion/#onyphe-lookup) - Module to process a query on Onyphe.
 * [Onyphe Full Lookup](https://misp.github.io/misp-modules/expansion/#onyphe-full-lookup) - Module to process a full query on Onyphe.
+* [OpenCTI Lookup](https://misp.github.io/misp-modules/expansion/#opencti-lookup) - Query an OpenCTI instance for exact observable matches and their context and source references.
 * [AlienVault OTX Lookup](https://misp.github.io/misp-modules/expansion/#alienvault-otx-lookup) - Module to get information from AlienVault OTX.
 * [Passive SSH Enrichment](https://misp.github.io/misp-modules/expansion/#passive-ssh-enrichment) - An expansion module to enrich, SSH key fingerprints and IP addresses with information collected by passive-ssh
 * [PassiveTotal Lookup](https://misp.github.io/misp-modules/expansion/#passivetotal-lookup) - The PassiveTotal MISP expansion module brings the datasets derived from Internet scanning directly into your MISP instance. This module supports passive DNS, historic SSL, WHOIS, and host attributes. In order to use the module, you must have a valid PassiveTotal account username and API key. Registration is free and can be done by visiting https://www.passivetotal.org/register
@@ -104,6 +108,7 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [ReversingLabs Enrichment](https://misp.github.io/misp-modules/expansion/#reversinglabs-enrichment) - Module to enrich file hashes, domains, IPs and URLs with ReversingLabs Spectra Analyze threat intelligence.
 * [Reverse DNS](https://misp.github.io/misp-modules/expansion/#reverse-dns) - Simple Reverse DNS expansion service to resolve reverse DNS from MISP attributes.
 * [SecurityTrails Lookup](https://misp.github.io/misp-modules/expansion/#securitytrails-lookup) - An expansion modules for SecurityTrails.
+* [Sherlock Lookup](https://misp.github.io/misp-modules/expansion/#sherlock-lookup) - Find social media accounts by username with Sherlock.
 * [Shodan Lookup](https://misp.github.io/misp-modules/expansion/#shodan-lookup) - Module to query on Shodan.
 * [Sigma Rule Converter](https://misp.github.io/misp-modules/expansion/#sigma-rule-converter) - An expansion hover module to display the result of sigma queries.
 * [Sigma Syntax Validator](https://misp.github.io/misp-modules/expansion/#sigma-syntax-validator) - An expansion hover module to perform a syntax check on sigma rules.
@@ -111,6 +116,7 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [Socialscan Lookup](https://misp.github.io/misp-modules/expansion/#socialscan-lookup) - A hover module to get information on the availability of an email address or username on some online platforms.
 * [SophosLabs Intelix Lookup](https://misp.github.io/misp-modules/expansion/#sophoslabs-intelix-lookup) - An expansion module to query the Sophoslabs intelix API to get additional information about an ip address, url, domain or sha256 attribute.
 * [URL Archiver](https://misp.github.io/misp-modules/expansion/#url-archiver) - Module to cache web pages of analysis reports, OSINT sources. The module returns a link of the cached page.
+* [SpamCop Lookup](https://misp.github.io/misp-modules/expansion/#spamcop-lookup) - Check an IPv4 address against the SpamCop Blocking List (SCBL).
 * [Stairwell Lookup](https://misp.github.io/misp-modules/expansion/#stairwell-lookup) - Module to query the Stairwell API to get additional information about the input hash attribute
 * [STIX2 Pattern Syntax Validator](https://misp.github.io/misp-modules/expansion/#stix2-pattern-syntax-validator) - An expansion hover module to perform a syntax check on stix2 patterns.
 * [ThreatCrowd Lookup](https://misp.github.io/misp-modules/expansion/#threatcrowd-lookup) - Module to get information from ThreatCrowd.
@@ -144,18 +150,22 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [CEF Export](https://misp.github.io/misp-modules/export_mod/#cef-export) - Module to export a MISP event in CEF format.
 * [Cisco fireSIGHT blockrule Export](https://misp.github.io/misp-modules/export_mod/#cisco-firesight-blockrule-export) - Module to export malicious network activity attributes to Cisco fireSIGHT manager block rules.
 * [Microsoft Defender for Endpoint KQL Export](https://misp.github.io/misp-modules/export_mod/#microsoft-defender-for-endpoint-kql-export) - Defender for Endpoint KQL hunting query export module
+* [Elastic ECS Export](https://misp.github.io/misp-modules/export_mod/#elastic-ecs-export) - Export event and object indicators as ECS threat indicators in Elasticsearch Bulk NDJSON.
 * [GoAML Export](https://misp.github.io/misp-modules/export_mod/#goaml-export) - This module is used to export MISP events containing transaction objects into GoAML format.
 * [Lite Export](https://misp.github.io/misp-modules/export_mod/#lite-export) - Lite export of a MISP event.
 * [EQL Query Export](https://misp.github.io/misp-modules/export_mod/#eql-query-export) - Export MISP event in Event Query Language
 * [Nexthink NXQL Export](https://misp.github.io/misp-modules/export_mod/#nexthink-nxql-export) - Nexthink NXQL query export module
 * [OSQuery Export](https://misp.github.io/misp-modules/export_mod/#osquery-export) - OSQuery export of a MISP event.
 * [Event to PDF Export](https://misp.github.io/misp-modules/export_mod/#event-to-pdf-export) - Simple export of a MISP event to PDF.
+* [QRadar Reference Set Export](https://misp.github.io/misp-modules/export_mod/#qradar-reference-set-export) - Export deduplicated, typed MISP indicators as QRadar reference-set CSV or JSON values.
+* [Splunk Lookup Export](https://misp.github.io/misp-modules/export_mod/#splunk-lookup-export) - Export event and object indicators as a Splunk CSV lookup with CIM field mapping hints.
 * [Test Export](https://misp.github.io/misp-modules/export_mod/#test-export) - Skeleton export module.
 * [ThreatStream Export](https://misp.github.io/misp-modules/export_mod/#threatstream-export) - Module to export a structured CSV file for uploading to threatStream.
 * [ThreadConnect Export](https://misp.github.io/misp-modules/export_mod/#threadconnect-export) - Module to export a structured CSV file for uploading to ThreatConnect.
 * [VirusTotal Collections Export](https://misp.github.io/misp-modules/export_mod/#virustotal-collections-export) - Creates a VT Collection from an event iocs.
 * [VirusTotal Graph Export](https://misp.github.io/misp-modules/export_mod/#virustotal-graph-export) - This module is used to create a VirusTotal Graph from a MISP event.
 * [YARA Rule Export](https://misp.github.io/misp-modules/export_mod/#yara-rule-export) - This module is used to export MISP events to YARA.
+* [Zeek Intel Export](https://misp.github.io/misp-modules/export_mod/#zeek-intel-export) - Export validated MISP event and object indicators as a Zeek Intel Framework feed.
 
 ### Import Modules
 * [ANYRUN Sandbox Import](https://misp.github.io/misp-modules/import_mod/#anyrun-sandbox-import) - A module designed to retrieve an analysis report from the ANY.RUN Sandbox by its unique ID and extract results (such as verdict, malware tags, and IOCs), converting them into MISP attributes within your event.
@@ -178,8 +188,11 @@ For more information: [Extending MISP with Python modules](https://www.misp-proj
 * [VMRay Summary JSON Import](https://misp.github.io/misp-modules/import_mod/#vmray-summary-json-import) - Import a VMRay Summary JSON report.
 
 ### Action Modules
+* [CrowdStrike IOC Publish](https://misp.github.io/misp-modules/action_mod/#crowdstrike-ioc-publish) - Create and renew module-owned Falcon custom IOCs from MISP event and object attributes.
 * [Mattermost](https://misp.github.io/misp-modules/action_mod/#mattermost) - Simplistic module to send message to a Mattermost channel.
 * [Nextcloud talk](https://misp.github.io/misp-modules/action_mod/#nextcloud-talk) - Simplistic module to send a message to a Nextcloud talk conversation.
+* [QRadar Reference Set Publish](https://misp.github.io/misp-modules/action_mod/#qradar-reference-set-publish) - Publish typed MISP indicators to an existing QRadar reference set and explicit domain.
+* [SentinelOne IOC Publish](https://misp.github.io/misp-modules/action_mod/#sentinelone-ioc-publish) - Publish MISP event and object indicators to SentinelOne Threat Intelligence with explicit scope.
 * [Slack](https://misp.github.io/misp-modules/action_mod/#slack) - Simplistic module to send messages to a Slack channel.
 * [Test action](https://misp.github.io/misp-modules/action_mod/#test-action) - This module is merely a test, always returning true. Triggers on event publishing.
 

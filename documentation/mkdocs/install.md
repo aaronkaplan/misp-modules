@@ -44,6 +44,34 @@ search path used for executables).
 misp-modules
 ~~~~
 
+### Debugging outbound HTTP requests
+
+Use `-d` / `--debug` for the usual server debug logs. To also trace HTTP requests
+from modules to their services, enable extended debugging:
+
+```bash
+misp-modules --debug-extended
+```
+
+This option implies `--debug` and writes untruncated request methods, URLs, headers,
+bodies, response status codes, headers, and bodies to the server logs on stderr.
+Each exchange has a unique ID and the module name to help follow concurrent queries.
+Custom modules starting their own worker threads must propagate the current Python
+context to those workers to retain module attribution. WhoisFreaks does this for its
+parallel domain and IP lookups.
+It covers HTTP and HTTPS calls made through `requests` and service SDKs using its
+standard HTTP adapter, including redirects. SDKs using other HTTP clients or custom
+adapters that replace `HTTPAdapter.send` are not covered.
+
+Bodies are logged using their Python representation to preserve binary data.
+Streamed uploads and responses are logged in chunks as the module sends or reads
+them, without buffering or consuming them in advance. Unread response data is not
+logged. Response bodies are decompressed when the client normally decompresses them.
+
+**These logs include credentials, API keys, cookies, and potentially sensitive
+payloads without redaction.** Enable this option only while troubleshooting, protect
+the logs, and disable it afterwards. Normal `--debug` does not enable HTTP tracing.
+
 As a new feature, you can now run custom MISP modules installed on your system by using the `-c` option.
 
 ~~~~bash
@@ -158,6 +186,47 @@ If you installed it using pip, you just need to execute the command `misp-module
 (source the virtual environment a second time to update the search paths).
 
 If you installed it from the cloned repository, just use poetry, i.e., `poetry run misp-modules`.
+
+### Module statistics
+
+Retrieve a live snapshot with:
+
+```bash
+curl http://localhost:6666/statistics
+```
+
+The JSON contains `started_at` (UTC), `uptime_seconds`, aggregate `totals`, and
+`modules`, keyed by module name. Every loaded module, including custom modules,
+appears with its `type`, even before its first query. Each entry and the totals contain:
+
+| Field | Meaning |
+| --- | --- |
+| `queries`, `completed`, `in_flight` | Dispatched queries, finished queries, and queries still awaiting a response. |
+| `successes`, `errors` | Successful and failed responses. `completed = successes + errors`. |
+| `module_errors` | Responses with a nonempty top-level `error` or `errors` field, including partial results with errors. |
+| `exceptions` | Unhandled module or response serialization failures. |
+| `timeouts` | Queries whose response deadline expired. `errors = module_errors + exceptions + timeouts`. |
+| `success_rate`, `error_rate` | Fractions of completed queries (0–1), or `null` before any complete. |
+| `request_bytes`, `response_bytes` | Total JSON body sizes, including server-generated error responses; HTTP headers are excluded. |
+| `last_query_at`, `last_completed_at` | UTC timestamps, or `null` before the corresponding event. |
+| `response_time_seconds` | `count`, `total`, `min`, `max`, `average`, `last`, and cumulative `buckets`. |
+
+Response times use a monotonic clock, include executor queueing, execution and
+serialization, and end when the response is prepared or the timeout fires. They
+exclude network transfer time. Timing count equals `completed`; min/max/average/last
+are `null` before any completion. Each histogram bucket counts durations less than
+or equal to its upper bound in seconds: `0.01`, `0.05`, `0.1`, `0.5`, `1`, `5`, `10`,
+`30`, `60`, `300`, and `+Inf` (all completed queries).
+
+Timeouts count exactly once as errors; a worker may continue executing afterwards.
+`in_flight` measures queries awaiting a response, not active worker threads.
+Malformed requests, invalid timeout values, unknown module names and calls to other
+endpoints are excluded. Existing `/query` response bodies and status codes are unchanged.
+
+Statistics are process-local, held in memory and reset when the server restarts.
+Multiple server instances have separate counters. Storage is bounded by the number
+of queried modules and histogram buckets; request bodies, results, credentials and
+error messages are never retained by the statistics collector.
 
 ## Run MISP modules in Docker
 
